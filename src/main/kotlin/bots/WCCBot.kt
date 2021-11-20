@@ -25,7 +25,7 @@ class WCCBot : TelegramLongPollingBot() {
 
     override fun getBotToken(): String {
         // Return bot token from BotFather
-        return "[TOKEN]"
+        return System.getenv("TELEGRAM_KEY")
     }
 
     override fun onUpdateReceived(update: Update?) {
