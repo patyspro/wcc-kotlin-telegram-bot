@@ -45,6 +45,7 @@ class WCCBot : TelegramLongPollingBot() {
                             "/start - Seleciona essa opção para voltar ao menu inicial \uD83C\uDF77",
                             "/site - Acesse nosso site",
                             "/cursos - On-line e Presencial sobre o universo dos vinhos \uD83C\uDF77",
+                            "/degustacao- Uvas, países e tipos  \uD83C\uDF77",
                             "/blog - Acesse o nosso blog!",
                             "/kits -Alguns de nossos kits de vinho \uD83C\uDF77",
                             "/miro -Nosso template do negócio"
@@ -55,16 +56,32 @@ class WCCBot : TelegramLongPollingBot() {
                         execute(sendMessage)
                     }
 
+
                     command.startsWith("/start") -> {
-                        sendMessage.text = "Olá $nameSender!\uD83D\uDE00 \n Bem vindo ao mundo de degustação de vinhos!\uD83C\uDF77\uD83C\uDF77 \nSelecione  /opcoes para iniciar o atendimento!"
+                        val sendDocument = SendDocument().apply {
+                            this.chatId = idChat
+                            this.document = InputFile().setMedia("https://media.giphy.com/media/ng6NcNAvohN6M/giphy.gif")
+                            this.parseMode = "MarkdownV2"
+                        }
+                        execute(sendDocument)
+
+                        sendMessage.text = "Olá, $nameSender!\uD83D\uDE00 \n " +
+                                "Bem vindo ao mundo de degustação de vinhos!\uD83C\uDF77\uD83C\uDF77 \nSelecione  /opcoes para iniciar o atendimento!"
                         execute(sendMessage)
                     }
                     command.startsWith("/site") -> {
+                        val sendDocument = SendDocument().apply {
+                            this.chatId = idChat
+                            this.document = InputFile().setMedia("https://media.giphy.com/media/dXQqF1klxyTEAqdxXd/giphy.gif")
+                            this.parseMode = "MarkdownV2"
+                        }
+                        execute(sendDocument)
                         sendMessage.text = " Acesse nosso site : https://rb.gy/2ns6pa"
                         execute(sendMessage)
                     }
                     command.startsWith("/cursos") -> {
-                        sendMessage.text = " Nós temos 02 opções de cursos : On-line e Presencial"
+
+                        sendMessage.text = "Nós temos 02 opções de cursos : On-line e Presencial"
 
 
                         val keyboardMarkup = ReplyKeyboardMarkup()
@@ -80,6 +97,12 @@ class WCCBot : TelegramLongPollingBot() {
                         execute(sendMessage)
                     }
                     command.startsWith("On-line") -> {
+                        val sendDocument = SendDocument().apply {
+                            this.chatId = idChat
+                            this.document = InputFile().setMedia("https://media.giphy.com/media/ZvUk3FyioptgUmCYjL/giphy.gif")
+                            this.parseMode = "MarkdownV2"
+                        }
+                        execute(sendDocument)
                         sendMessage.text =
                             "Parabéns pela sua decisão !!! \uD83D\uDE00 \n" +
                                     "Você terá uma imersão completa no universo do vinho podendo assistir as aulas a hora que você quiser com suporte de dúvidas e no final do curso você terá direito a um brinde de uma garrafa tinto ou espumante e no final do curso seu certificado.\n" +
@@ -88,13 +111,72 @@ class WCCBot : TelegramLongPollingBot() {
 
                     }
                     command.startsWith("Presencial") -> {
+                        val sendDocument = SendDocument().apply {
+                            this.chatId = idChat
+                            this.document = InputFile().setMedia("https://media.giphy.com/media/gjlKnvlYQ7YEJJJHiM/giphy.gif")
+                            this.parseMode = "MarkdownV2"
+                        }
+                        execute(sendDocument)
                         sendMessage.text = "Parabéns pela sua decisão! \uD83C\uDF77 \n " +
                                 "Aqui você terá uma imersão completa com nossos melhores sommeliers no universo do vinho com direito a degustações e um brinde de uma garrafa tinto ou espumante e no final do curso o seu certificado." +
                                 " Acesse o site e faça a sua inscrição: https://shorturl.at/fqCP7"
                         execute(sendMessage)
                     }
 
-                    command.startsWith("/blog") -> {
+                    command.startsWith("/degustacao") -> {
+
+                        sendMessage.text = "Nós temos 03 opções de escolha de sua garrafa:"
+
+                        val keyboardMarkup = ReplyKeyboardMarkup()
+                        val keyboard: MutableList<KeyboardRow> = ArrayList()
+                        val row = KeyboardRow()
+                        row.add("Uvas")
+                        row.add("Países")
+                        row.add("Tipos")
+
+                        keyboard.add(row)
+                        keyboardMarkup.keyboard = keyboard
+                        sendMessage.replyMarkup = keyboardMarkup
+                        execute(sendMessage)
+                    }
+                    command.startsWith("Uvas") -> {
+                        val sendDocument = SendDocument().apply {
+                            this.chatId = idChat
+                            this.document = InputFile().setMedia("https://media.giphy.com/media/79kqXR29cNq7WAiMRn/giphy.gif")
+                            this.parseMode = "MarkdownV2"
+                        }
+                        execute(sendDocument)
+
+                        sendMessage.text ="Escolha a garrafa pela uva e aplique o desconto WINE e garanta o seu brinde:\n https://www.wine.com.br/vinhos/cVINHOS-p1.html"
+
+                        execute(sendMessage)
+                    }
+                    command.startsWith("Países") -> {
+                        val sendDocument = SendDocument().apply {
+                            this.chatId = idChat
+                            this.document = InputFile().setMedia("https://media.giphy.com/media/hTNt45ppSuN3nDRB7z/giphy.gif")
+                            this.parseMode = "MarkdownV2"
+                        }
+                        execute(sendDocument)
+
+                        sendMessage.text = "Escolha a garrafa pelo país e aplique o desconto WINE e garanta o seu brinde:\n https://www.wine.com.br/vinhos/cVINHOS-p1.html"
+
+                        execute(sendMessage)
+                    }
+                    command.startsWith("Tipos") -> {
+                        val sendDocument = SendDocument().apply {
+                            this.chatId = idChat
+                            this.document = InputFile().setMedia("https://media.giphy.com/media/l3c5RJr6yRKyyIw00/giphy.gif")
+                            this.parseMode = "MarkdownV2"
+                        }
+                        execute(sendDocument)
+
+                        sendMessage.text = "Escolha a garrafa pelo tipo de vinho e aplique o desconto WINE e garanta o seu brinde:\n https://www.wine.com.br/vinhos/cVINHOS-p1.html"
+
+                        execute(sendMessage)
+                    }
+
+                        command.startsWith("/blog") -> {
                         val ind = (0..2).shuffled().first()
                         val blog = listOf(
                             "https://clubedevinhos.com/artigos/10-melhores-vinhos-brancos-para-servir-ceia-natal",
